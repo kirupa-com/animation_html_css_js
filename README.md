@@ -200,3 +200,128 @@ The Android platform contained within Cordova 5.0.0 does not have a "whitelist" 
    install it from the command line or using
    https://github.com/apache/cordova-plugin-whitelist.git from the
    Custom tab of the configuration designer.
+
+**Issue #6**
+------------
+Visual Studio 2015 RC uses Ant to build Android while the command line has switched to Gradle by default in version 5.0.0 of the CLI. When switching between Visual Studio and the command line with the version of Android in Cordova 5.0.0, you may want to specify that the platform should be built with Ant instead if you are running into unexpected issues.
+
+**Ex:**
+
+    cordova build android -- --ant
+
+You can also set an environment variable to keep this preference around for a command line session.
+
+    set ANDROID_BUILD=ant
+
+Finally, if you are still build errors, you may want to opt to remove and re-add the android platform after switching build systems.
+
+    cordova platform remove android 
+    cordova platform add android
+
+**Issue #7**
+------------
+Ripple does not function properly in Cordova 5.0.0 due to a newly introduced validation check. This has already been fixed in Cordova main and will be resolved in a Cordova 5.x point release.
+
+#**CTP 3.1 (Visual Studio 2013) Known Issues Section**
+
+**Issue #1**
+------------
+While trying to associate a Cordova app with Windows store using Visual Studio 13 and CTP3.1 , the AppxManifest.xml doesn’t get updated with the appropriate Application Id & publisher name. We have fixed this issue in VS2015 RC. To fix this issue, install the plugin from [https://github.com/Chuxel/taco-tricks/tree/master/plugin-windows-package-fix](https://github.com/Chuxel/taco-tricks/tree/master/plugin-windows-package-fix) and try building your application again.
+
+**Issue #2**
+------------
+When using version 0.2.8 or higher of vs-mda-remote, you should add the following XML elements to your config.xml to ensure your icons and splash screens are picked up properly.
+
+    <platformname="ios">
+        <iconsrc="res/icons/ios/icon-60-3x.png"width="180"height="180" />
+        <iconsrc="res/icons/ios/icon-60.png"width="60"height="60" />
+        <iconsrc="res/icons/ios/icon-60-2x.png"width="120"height="120" />
+        <iconsrc="res/icons/ios/icon-76.png"width="76"height="76" />
+        <iconsrc="res/icons/ios/icon-76-2x.png"width="152"height="152" />
+        <iconsrc="res/icons/ios/icon-40.png"width="40"height="40" />
+        <iconsrc="res/icons/ios/icon-40-2x.png"width="80"height="80" />
+        <iconsrc="res/icons/ios/icon-57.png"width="57"height="57" />
+        <iconsrc="res/icons/ios/icon-57-2x.png"width="114"height="114" />
+        <iconsrc="res/icons/ios/icon-72.png"width="72"height="72" />
+        <iconsrc="res/icons/ios/icon-72-2x.png"width="144"height="144" />
+        <iconsrc="res/icons/ios/icon-small.png"width="29"height="29" />
+        <iconsrc="res/icons/ios/icon-small-2x.png"width="58"height="58" />
+        <iconsrc="res/icons/ios/icon-50.png"width="50"height="50" />
+        <iconsrc="res/icons/ios/icon-50-2x.png"width="100"height="100" />
+      </platform>
+      <platformname="ios">
+        <splashsrc="res/screens/ios/screen-iphone-portrait.png"width="320"height="480" />
+        <splashsrc="res/screens/ios/screen-iphone-portrait-2x.png"width="640"height="960" />
+        <splashsrc="res/screens/ios/screen-ipad-portrait.png"width="768"height="1024" />
+        <splashsrc="res/screens/ios/screen-ipad-portrait-2x.png"width="1536"height="2048" />
+        <splashsrc="res/screens/ios/screen-ipad-landscape.png"width="1024"height="768" />
+        <splashsrc="res/screens/ios/screen-ipad-landscape-2x.png"width="2048"height="1536" />
+        <splashsrc="res/screens/ios/screen-iphone-568h-2x.png"width="640"height="1136" />
+        <splashsrc="res/screens/ios/screen-iphone-portrait-667h.png"width="750"height="1334" />
+        <splashsrc="res/screens/ios/screen-iphone-portrait-736h.png"width="1242"height="2208" />
+        <splashsrc="res/screens/ios/screen-iphone-landscape-736h.png"width="2208"height="1242" />
+      </platform>
+
+**(You can edit the contents of config.xml by right clicking on it and selecting "View Code".)**
+
+Alternatively you can install version 0.2.7 instead by using the following command:
+
+    npm install -g vs-mda-remote@0.2.7
+
+
+#**General Known Issues**
+
+**Issue #1**
+------------
+The “Solution Platform” dropdown may not appear in the toolbar when upgrading Visual Studio 2013 from a previous version to Update 4. You can add using the “Standard Toolbar Options” dropdown as described in [Microsoft Support article 2954109](http://support.microsoft.com/kb/2954109).
+
+**Issue #2**
+------------
+If you already had the Android SDK installed, you may also need to update and install the SDK for Android 4.4.x (API level 19). You may need to restart Visual Studio if it is open while updating the Android SDK through the SDK Manager to be able to build for Android after the update is complete. See [Manually Installing Dependencies](https://msdn.microsoft.com/en-us/library/dn757054.aspx#ThirdParty) for details.
+
+**Issue #3**
+------------
+In some circumstances, when deploying to iOS devices, they phone may enter an unresponsive state where apps may stops responding. Avoid deploying an app when the same app is still running. 
+As a workaround, if you enter this state, soft reset your iOS device.
+
+**Issue #4**
+------------
+While setting a PIN for secure iOS builds, if you later re-open the Remote Agent Configuration options page, clicking "OK" will clear the PIN and revert to non-secure builds unless you re-enter a PIN. 
+
+As a work-around, either hit "Cancel" whenever you re-open the options page to Remote Agent Configuration, or re-enter a new PIN.
+
+**Issue #5**
+------------
+Plugins will be re-downloaded after a “clean” operation. Developers should specify a version number or reference the plugins locally when using third-party plugins. See the [Plugins](https://msdn.microsoft.com/en-us/library/dn757051.aspx) section for details.
+
+**Issue #6**
+------------
+The contents of the “res” folder cannot be accessed by web content as they are copied into platform-specific native project locations.
+
+**Issue #7**
+------------
+Not all iOS Simulator devices are currently listed in the Debug Target dropdown in Visual Studio. A workaround is to manually change the device using the iOS Simulator Hardware > Device menu.
+
+**Issue #8**
+------------
+If a plugin is added to your project, built for iOS, and then removed from the project, the plugin will still be included in the iOS build until you clean or build for another platform. As a workaround, clean or rebuild instead of build.
+
+**Issue #9**
+------------
+The first time you launch Visual Studio after installing the Tools for Apache Cordova extension, IntelliSense will not work for the Apache Cordova™ object or other Cordova plugins. Please restart Visual Studio to fix the problem.
+
+**Issue #10**
+------------
+When using TypeScript, there are known issues that will incorrectly identify project items as external code or will fail to read in a user configuration file. To avoid unexpected behavior when working with a Cordova TypeScript project, turn off Just My Code (Options > Debugger > General > uncheck Enable Just My Code).
+
+**Issue #11**
+------------
+The project name automatically sets the display name in config.xml. If you encounter a build error because of this problem, set your system locale, then clean your project and rebuild.
+
+**Issue #12**
+------------
+During installation, if your “My Documents” path redirects to a server share location, install the MSI from“%localappdata%\Microsoft\MultiDeviceHybridApps” instead.
+
+**Issue #13**
+------------
+Dragging a mixed-case file into an HTML page creates a lowercase reference which will cause it to not be found on Android and iOS. Manually update the reference with the correct casing.
