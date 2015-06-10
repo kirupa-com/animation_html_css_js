@@ -1,4 +1,4 @@
-#**Visual Studio 2015 RC**
+#**Known Issues: Visual Studio 2015 RC**
 
 ----------
 Projects created in an earlier version of Visual Studio will need to be migrated to support the new project structure that is more interoperable with 3rd party tools and CLIs. 
