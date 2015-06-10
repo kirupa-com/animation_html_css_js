@@ -430,5 +430,9 @@ When using the Camera plugin with Ripple and the DATA_URL option, a file referen
 No IntelliSense is provided for Cordova plugins in JavaScript files in Apache Cordova projects. As a workaround, developers can enable IntelliSense for Cordova plugins by explicitly adding “/// <reference group="Implicit (Multi-Device Apps)” />” to the JavaScript file.
 
 **Issue #7**
------
+---
 No IntelliSense is provided within JavaScript files for other JavaScript files included via a script tag in a referring HTML page. As a workaround, developers can enable IntelliSense for other referenced JavaScript files by explicitly adding “/// <reference path=”referencedFile.js” />” to the JavaScript file.
+
+----------
+
+----------
