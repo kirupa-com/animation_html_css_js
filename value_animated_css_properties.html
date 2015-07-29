@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Showing the Value of Animated CSS Properties</title>
+<style>
+body {
+	background-color: #CCC;
+	padding: 25px;
+}
+#main {
+	height: 330px;
+    width: 330px;
+}
+.pictureContainer {
+    border: 1px solid #CCCCCC;
+    display: block;
+    float: left;
+    height: 330px;
+    overflow: hidden;
+    width: 330px;
+}
+
+.pictureContainer img {
+	position: relative;
+	top: 0px;
+    transition: top .5s ease-in-out;
+}
+.pictureContainer img:hover {
+    top: -330px;
+}
+
+h1 {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 36px;
+	margin: 0px 0px 10px 0px;
+	line-height: 32px;
+}
+p {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	margin-top: 0px;
+}
+#results {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-size: 32px;
+	color: #0033CC;
+	font-weight: bold;
+}
+</style>
+<meta content="getcomputedstyle, properties, value, css" name="keywords">
+<meta content="What the title says, yo!" name="description">
+</head>
+
+<body>
+<div id="main">
+	<div class="pictureContainer">
+		<img id="theimage" src="images/blue_pink.png" height="660" width="330" alt="#"/>
+	</div>
+</div>
+<br/>
+<p>Value of the <strong>top</strong> property:</p>
+<p id="results"></p>
+<script src="js/prefixfree.min.js"></script>
+<script>
+
+var counter = 0;
+var image = document.getElementById("theimage");
+
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+
+requestAnimationFrame(updateValue);
+
+
+function updateValue() {
+	var textField = document.getElementById("results");
+	var imageTopPosition = getComputedStyle(image).top;
+	
+	textField.textContent = imageTopPosition;
+	
+	requestAnimationFrame(updateValue);
+}
+</script>
+</body>
+
+</html>
