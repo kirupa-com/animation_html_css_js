@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Image Slide using CSS3 Transitions</title>
+<style>
+body {
+	background-color: #CCC;
+	padding: 25px;
+}
+#main {
+	height: 330px;
+    width: 330px;
+}
+.pictureContainer {
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    float: left;
+    height: 150px;
+    margin: 5px;
+    overflow: hidden;
+    width: 150px;
+}
+.pictureContainer img {
+	position: relative;
+	top: 0px;
+	
+	transition: top .2s ease-in-out;
+}
+.pictureContainer img:hover {
+	top: -150px;
+}
+h1 {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: xx-large;
+	margin: 0px;
+}
+p {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	margin-top: 0px;
+}
+</style>
+<meta content="css3, transition, image, slide" name="keywords">
+<meta content="What the title says, yo!" name="description">
+</head>
+
+<body>
+<div id="main">
+	<div class="pictureContainer">
+		<img src="images/smiley.png" height="300" width="150"/>
+	</div>
+	<div class="pictureContainer">
+		<img src="images/tongue.png" height="300" width="150"/>
+	</div>
+	<div class="pictureContainer">
+		<img src="images/meh.png" height="300" width="150"/>
+	</div>
+	<div class="pictureContainer">
+		<img src="images/sad.png" height="300" width="150"/>
+	</div>
+</div>
+<script src="js/prefixfree.min.js"></script>
+</body>
+
+</html>
