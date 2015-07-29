@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="The Blink Tag is Back...All Right!" name="title">
+<title>The Blink Tag is Back...All Right!</title>
+<style type="text/css">
+body {
+	background-color: #F5F5F5;
+	margin: 50px;
+	text-align: center;
+	margin: 25px 0 0 0;
+}
+
+p {
+	font-size: 256px;
+	font-family: Arial;
+	color: #111;
+	margin: 0;
+}
+
+.blink {
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-name: blink;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	
+	75% {
+		opacity: 1;
+	}
+	76% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+</style>
+</head>
+
+<body>
+<p class="blink">hello</p>
+
+<script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+</body>
+</html>
