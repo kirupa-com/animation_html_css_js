@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Automatic Content Slider Example</title>
+
+    <style>
+        #contentContainer {
+            width: 550px;
+            height: 350px;
+            border: 5px black solid;
+            overflow: hidden;
+        }
+
+        #wrapper {
+            width: 2200px;
+            position: relative;
+            left: 0px;
+            transition: left .5s ease-in-out;
+        }
+
+        .content {
+            float: left;
+            height: 350px;
+            white-space: normal;
+            width: 550px;
+            text-align: center;
+            padding-top: 70px;
+        }
+
+            .content p {
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                opacity: .3;
+                font-size: 144px;
+                margin: 0;
+            }
+
+		#itemOne {
+		    background-color: #0099CC;
+		    background-image: url("http://www.kirupa.com/images/blueSquare.png");
+		}
+		
+		#itemTwo {
+		    background-color: #FFCC00;
+		    background-image: url("http://www.kirupa.com/images/yellowSquare.png");
+		}
+		
+		#itemThree {
+		    background-color: #FF6666;
+		    background-image: url("http://www.kirupa.com/images/pinkSquare.png");
+		}
+		
+		#itemFour {
+		    background-color: #E8E8E8;
+		    background-image: url("http://www.kirupa.com/images/graySquare.png");
+		}
+
+        #navLinks {
+            text-align: center;
+            width: 550px;
+        }
+
+            #navLinks ul {
+                margin: 0px;
+                padding: 0px;
+                display: inline-block;
+                margin-top: 6px;
+            }
+
+                #navLinks ul li {
+                    float: left;
+                    text-align: center;
+                    margin: 10px;
+                    list-style: none;
+                    cursor: pointer;
+                    background-color: #CCCCCC;
+                    padding: 5px;
+                    border-radius: 50%;
+                    border: black 5px solid;
+                }
+
+                    #navLinks ul li:hover {
+                        background-color: #FFFF00;
+                    }
+
+                    #navLinks ul li.active {
+                        background-color: #333333;
+                        color: #FFFFFF;
+                        outline-width: 7px;
+                    }
+
+                        #navLinks ul li.active:hover {
+                            background-color: #484848;
+                            color: #FFFFFF;
+                        }
+    </style>
+</head>
+
+<body>
+    <div id="contentContainer">
+        <div id="wrapper">
+            <div id="itemOne" class="content">
+                <!-- your content for the first item goes here -->
+            </div>
+            <div id="itemTwo" class="content">
+                <!-- your content for the second item goes here -->
+            </div>
+            <div id="itemThree" class="content">
+                <!-- your content for the third item goes here -->
+            </div>
+            <div id="itemFour" class="content">
+                <!-- your content for the fourth item goes here -->
+            </div>
+        </div>
+    </div>
+    <div id="navLinks">
+        <ul>
+            <li class="itemLinks" data-pos="0px"></li>
+            <li class="itemLinks" data-pos="-550px"></li>
+            <li class="itemLinks" data-pos="-1100px"></li>
+            <li class="itemLinks" data-pos="-1650px"></li>
+        </ul>
+    </div>
+    
+    <script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+    
+    <script>
+    	// just querying the DOM...like a boss!
+        var links = document.querySelectorAll(".itemLinks");
+        var wrapper = document.querySelector("#wrapper");
+        
+        // the activeLink provides a pointer to the currently displayed item
+        var activeLink = 0;
+        
+        // setup the event listeners
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            link.addEventListener('click', setClickedItem, false);
+            
+            // identify the item for the activeLink
+            link.itemID = i;
+        }
+
+        // set first item as active
+        links[activeLink].classList.add("active");
+
+        function setClickedItem(e) {
+            removeActiveLinks();
+
+            var clickedLink = e.target;
+            activeLink = clickedLink.itemID;
+            
+            changePosition(clickedLink);
+        }
+		
+        function removeActiveLinks() {
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove("active");
+            }
+        }
+        
+        // Handle changing the slider position as well as ensure
+        // the correct link is highlighted as being active
+		function changePosition(link) {
+        	var position = link.getAttribute("data-pos");
+            wrapper.style.left = position;
+            
+            link.classList.add("active");
+        }
+    </script>
+</body>
+</html>
