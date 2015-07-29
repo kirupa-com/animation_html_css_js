@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="An Interesting Title Goes Here" name="title">
+<title>An Interesting Title Goes Here</title>
+<style>
+body {
+	background-color: #FFF;
+	margin: 30px;
+	margin-top: 10px;
+}
+#box {
+	width: 550px;
+	height: 350px;
+	border: 5px black solid;
+	overflow: hidden;
+	background-color: #F2F2F2;
+	margin: auto auto;
+	background-image: url('http://www.kirupa.com/images/gray_background.png');
+}
+#contentContainer {
+	position: relative;
+}
+#circleDiv {
+    background-color: #2693FF;
+    border-radius: 75px 75px 75px 75px;
+    height: 150px;
+    margin: 100px auto auto;
+    width: 150px;
+    transition:transform .2s ease-in-out, opacity .2s ease-in-out;
+}
+
+.stateOne {
+	opacity: 1;
+	transform: scale(1, 1);
+}
+.stateTwo {
+	opacity: .5;
+	transform: scale(1.9, 1.9);
+}
+
+p {
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-size: medium;
+	color: #006699;
+}
+
+</style>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+
+<body>
+<div id="box">
+	<div id="contentContainer" class="stateOne">
+		<div id="circleDiv">
+
+		</div>
+	</div>
+</div>
+
+<script src="http://www.kirupa.com/html5/examples/js/prefixfree.min.js"></script>
+<script>
+var theCircle = document.querySelector("#circleDiv");
+
+function setup() {
+	theCircle.addEventListener("mouseover", setInitialClass, false);
+	
+	theCircle.addEventListener("transitionend", loopTransition, false);
+	theCircle.addEventListener("webkitTransitionEnd", loopTransition, false);
+	theCircle.addEventListener("mozTransitionEnd", loopTransition, false);
+	theCircle.addEventListener("msTransitionEnd", loopTransition, false);
+	theCircle.addEventListener("oTransitionEnd", loopTransition, false);
+}
+setup();
+
+function setInitialClass(e) {
+	theCircle.className = "stateTwo";
+}
+
+function loopTransition(e) {
+	if (e.propertyName == "opacity") {
+		if (theCircle.className == "stateTwo") {
+			theCircle.className = "stateOne";
+		} else {
+			theCircle.className = "stateTwo";
+		}
+	}
+}
+</script>
+</body>
+</html>
