@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Rounded Image Links with an Animated Hover Effect</title>
+<meta content="css3, transition, link, scale" name="keywords">
+<meta content="What the title says, yo!" name="description">
+
+<style>
+body {
+	background-color: #CCC;
+	padding: 25px;
+}
+#container li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 20px;
+}
+
+/* center the background image */
+#container li a {
+	background-repeat: no-repeat;
+	background-position: center center;
+	display: block;
+}
+
+/* define the circle and fall under the image */
+#container li a span {
+	border-radius: 100%;
+	display: block;
+	position: relative;
+	z-index: -1;
+	width: 100px;
+	height: 100px;
+	transition: transform .15s cubic-bezier(.11,.65,1,1.69);
+}
+
+/* the icons */
+#container li a.book {
+	background-image: url("http://www.kirupa.com/mini_icons/entypo/large_book.png");
+}
+#container li a.rocket {
+	background-image: url("http://www.kirupa.com/mini_icons/entypo/large_rocket.png");
+}
+#container li a.link {
+	background-image: url("http://www.kirupa.com/mini_icons/entypo/large_link.png");
+}
+
+/* the "circle" color */
+#container li a.book span {
+    background-color: #7AFF4D;
+}
+#container li a.rocket span {
+    background-color: #FFC926;
+}
+#container li a.link span {
+    background-color: #FFFFFF;
+}
+
+#container li a:hover span {
+	transform: scale(1.3);
+}
+</style>
+</head>
+
+<body>
+<div>
+<ul id="container">
+	<li>
+		<a class="book" href="#">
+			<span></span>
+		</a>
+	</li>
+	<li>
+		<a class="rocket" href="#">
+			<span></span>
+		</a>
+	</li>
+	<li>
+		<a class="link" href="#">
+			<span></span>
+		</a>
+	</li>
+</ul>
+</div>
+<script src="js/prefixfree.min.js"></script>
+</body>
+
+</html>
