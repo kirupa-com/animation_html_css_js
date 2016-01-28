@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta charset="utf-8">
+<meta content="An example showing how to use JavaScript to animate scrolling to the top." name="description">
+<meta content="Scroll to Top Animation Example" name="title">
+<title>Scroll to Top Animation Example</title>
+<style type="text/css">
+body {
+	padding: 45px;
+	background-color: #F3F3F3;
+}
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	line-height: 40px;
+	padding: 30px;
+	margin-right: 60px;
+	color: #333333;
+}
+h1 {
+	text-transform: capitalize;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	font-size: 40px;
+	padding: 10px;
+	margin: 0px;
+	background-color: #CCFF33;
+	color: #333333;
+}
+#floatie {
+	position: fixed;
+	bottom: 0px;
+	right: 53px;
+	background-color: #FFFF00;
+	width: 50px;
+	height: 50px;
+	border: 2px #FF9900 solid;
+	font-weight: bold;
+	font-size: 48px;
+	text-align: center;
+	padding-top: 10px;
+	border-radius: 4px;
+	transition: transform .2s cubic-bezier(.59,-0.54,.72,1.59);
+	transform: translate(0px, 10px);
+	box-shadow: 0 0 10px 0 #666;
+}
+#floatie:hover {
+	background-color: #CCFF33;
+	border-color: #669900;
+	cursor: pointer;
+	transform: translate(0px, 4px);
+}
+.centerImage {
+	text-align: center;
+}
+</style>
+</head>
+ 
+<body>
+<div id="floatie">
+	^
+</div>
+ 
+<h1>Some Random Content</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id lectus 
+auctor, laoreet ante non, blandit magna. Aenean molestie dolor urna, id viverra 
+diam dictum ac. Nulla facilisi. Maecenas sit amet facilisis ante. Pellentesque 
+dignissim sed nibh sit amet iaculis. Sed convallis laoreet lorem eu euismod. 
+Pellentesque sagittis, neque in blandit consectetur, leo nisl luctus nisi, vel 
+volutpat neque lacus vel risus. Nam et tellus sed erat aliquam bibendum a in 
+massa. Vivamus consequat dui nec neque feugiat molestie. Quisque eu leo at dui 
+sodales bibendum. Nullam eget velit quis enim lobortis ultrices vel facilisis 
+nibh.</p>
+<p class="centerImage">
+<img alt="something" height="350" src="http://www.kirupa.com/images/blueBlackCircle.png" width="350"></p>
+<p>Phasellus viverra nibh sed mi iaculis lacinia. Nullam quis risus 
+tellus. Cras condimentum eleifend augue, a pellentesque tellus fermentum in. 
+Fusce laoreet nulla vel enim mattis, ut molestie augue fringilla. Vestibulum 
+lobortis eros velit, nec porttitor lorem tempus nec. Aliquam rutrum, tortor in 
+elementum mollis, arcu ante consequat nunc, at dapibus velit ligula sed arcu. 
+Proin euismod odio sed augue sagittis, sodales sollicitudin risus facilisis. 
+Fusce lorem ante, volutpat et ligula nec, sodales aliquam turpis.<br><br>
+Vestibulum rutrum urna sed ante venenatis placerat ac ac magna. Duis congue orci 
+eget venenatis lacinia. Mauris dignissim nibh ut sodales tincidunt. Aliquam erat 
+volutpat. Nullam congue commodo consectetur. Aenean posuere laoreet sodales. 
+Aenean tempor, sem in vehicula commodo, enim nisl tempor nibh, non interdum 
+purus sapien sed tortor. Cras volutpat vulputate rutrum. Phasellus vel dui sed 
+velit dignissim faucibus id et sem. Duis nisi sapien, lacinia at mi non, 
+scelerisque bibendum arcu. Class aptent taciti sociosqu ad litora torquent per 
+conubia nostra, per inceptos himenaeos. Ut faucibus in risus eget dignissim. 
+Nulla condimentum nisl blandit ante gravida, convallis scelerisque ante aliquet. 
+Etiam urna augue, condimentum at sem quis, adipiscing dapibus arcu.<br><br>
+Pellentesque varius sapien ut auctor ultricies. Vivamus et pretium justo, eu 
+aliquet risus. Nulla gravida nulla non ante elementum viverra. Vestibulum vitae 
+viverra metus. Duis tellus orci, mattis vel ornare in, rutrum nec turpis. Mauris 
+tempor, diam sit amet pellentesque suscipit, erat neque ornare nulla, in porta 
+neque sapien ac nibh. Etiam non ullamcorper mi. Aliquam sit amet tortor vitae 
+orci vulputate feugiat vitae eget risus. Maecenas cursus ut justo ut ultricies. 
+Fusce dictum dictum lorem, eget placerat leo bibendum in. Sed facilisis mi nibh, 
+a dictum diam viverra sit amet. Mauris sapien sapien, tincidunt ac lobortis sit 
+amet, condimentum ut sem. Etiam a metus sed odio fringilla vestibulum.<br><br>
+Proin eu lobortis sem. Nullam magna leo, varius ut quam ac, posuere feugiat 
+justo. Maecenas porta est urna, quis euismod felis auctor non. Praesent sit amet 
+elit id dolor volutpat malesuada. Nam non lorem non leo accumsan elementum. 
+Nulla vitae nulla in lorem ultrices aliquet. Maecenas in lobortis tortor. Ut 
+dapibus cursus luctus. Proin sit amet nisi in augue semper hendrerit. Duis 
+rhoncus vehicula ligula ut fringilla. Suspendisse id nulla pretium, imperdiet 
+odio at, convallis tellus.</p>
+<p><a href="http://www.kirupa.com/" target="_parent">Return to kirupa.com</a>.</p>
+
+<script src="http://www.kirupa.com/prefixfree.min.js"></script>
+<script src="http://kirupa.googlecode.com/svn/trunk/easing.js"></script>
+<script>
+
+var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame ||
+                            window.msRequestAnimationFrame;
+
+var bodyElement = document.querySelector("body");
+var floatie = document.querySelector("#floatie");
+
+
+var currentScrollPosition;
+var iteration;
+var start = false;
+
+function setup() {
+	// do something when the up arrow is clicked
+	floatie.addEventListener("click", animateToTopOfPage, false);
+	
+	// deal with the mouse wheel
+	bodyElement.addEventListener("mousewheel", stopEverything, false);
+	bodyElement.addEventListener("DOMMouseScroll", stopEverything, false);
+	
+	// wheeeeeeee!
+	animationLoop();
+}
+setup();
+
+//
+// kick of the animation to scroll your window back to the top
+//
+function animateToTopOfPage(e) {
+	currentScrollPosition = getScrollPosition();
+	
+	start ^= true;
+	iteration = 0;
+}
+
+//
+// stop the animation and reset start and iteration
+//
+function stopEverything() {
+	start = false;
+}
+
+//
+// a cross-browser (minus Opera) way of getting the current scroll position
+//
+function getScrollPosition() {
+	if (document.documentElement.scrollTop == 0) {
+		return document.body.scrollTop;
+	} else {
+		return document.documentElement.scrollTop;
+	}
+}
+
+//
+// kicks into high gear only when the start variable is true
+//
+function animationLoop() {
+	// start is true when you click on the up arrow
+	if (start) {
+		// where the magic happens                           
+		window.scrollTo(0, easeOutCubic(iteration, 
+										currentScrollPosition,
+										-currentScrollPosition,
+										50));
+		
+		iteration++;
+		
+		// once you reach the top of the document, stop the scrolling
+		if (getScrollPosition() <= 0) {
+			stopEverything();
+		}
+	}
+	requestAnimationFrame(animationLoop);
+}
+</script>
+</body>
+</html>
